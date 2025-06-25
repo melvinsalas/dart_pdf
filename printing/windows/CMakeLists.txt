@@ -22,16 +22,18 @@ set(PDFIUM_LOCAL_FORCE OFF CACHE BOOL "Forzar uso de pdfium local")
 
 if(PDFIUM_LOCAL_FORCE)
   set(PDFIUM_URL "${CMAKE_CURRENT_LIST_DIR}/pdfium-win-${PDFIUM_ARCH}.tgz")
-elif(${PDFIUM_VERSION} STREQUAL "latest")
-  set(
-    PDFIUM_URL
-    "https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-win-${PDFIUM_ARCH}.tgz"
-    )
 else()
-  set(
-    PDFIUM_URL
-    "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/${PDFIUM_VERSION}/pdfium-win-${PDFIUM_ARCH}.tgz"
-    )
+  if(${PDFIUM_VERSION} STREQUAL "latest")
+    set(
+      PDFIUM_URL
+      "https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-win-${PDFIUM_ARCH}.tgz"
+      )
+  else()
+    set(
+      PDFIUM_URL
+      "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/${PDFIUM_VERSION}/pdfium-win-${PDFIUM_ARCH}.tgz"
+      )
+  endif()
 endif()
 
 # Download pdfium
